@@ -7,3 +7,10 @@ create-react-app - is the created source code, photo-port is just the name
 npm install the updated package and npm start
 
 react-dom package - serves as the entry point to the DOM to render the JSX by using the virtual DOM.
+
+npm install @testing-library/react @testing-library/jest-dom --save-dev
+library to do tests in React
+
+The React Testing Library, which provides functions that will help test React components, including the capacity to render components and query functions that can return DOM elements.
+
+The jest-dom package, which is a library that extends Jest with custom matchers to enable inspection of various parts of the DOM.
