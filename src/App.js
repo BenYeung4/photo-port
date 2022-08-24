@@ -6,6 +6,9 @@ import About from "./components/About";
 //importing the Nav section
 import Nav from "./components/Nav";
 
+//importing the Gallery section
+import Gallery from "./components/Gallery";
+
 // import logo from "./logo.svg";
 import "./App.css";
 
@@ -15,6 +18,7 @@ function App() {
     <div>
       <Nav></Nav>
       <main>
+        <Gallery></Gallery>
         <About></About>
       </main>
     </div>
