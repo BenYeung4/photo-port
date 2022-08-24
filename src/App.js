@@ -32,6 +32,10 @@ function App() {
     },
   ]);
 
+  //hooks to delcare the constants near the top of the app function for a single-page application/SPA.
+  //set to fales, to prevent the contact form from showing when a user initally navigates to the homepage.  Gallery will display instead, which is what our clients want to see.
+  const [contactSelected, setContactSelected] = useState(false);
+
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
   return (
@@ -40,11 +44,20 @@ function App() {
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <ContactForm></ContactForm>
-        <Gallery currentCategory={currentCategory}></Gallery>
-        <About></About>
+        {/*below states that if contactSelected is failse, the Gallery and About components should be rendered. but if contactedSelected is true, the ContactForm component should be rendered.  this is called ternary operator, with the use of ? and :, this supply the false condition to render as well */}
+        {/* the extra <> are React fragements or <React.Fragment></React.Fragments>*/}
+        {!contactSelected ? (
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+        ) : (
+          <ContactForm></ContactForm>
+        )}
       </main>
     </div>
   );
