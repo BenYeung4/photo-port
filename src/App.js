@@ -9,6 +9,9 @@ import Nav from "./components/Nav";
 //importing the Gallery section
 import Gallery from "./components/Gallery";
 
+//importing the Contact section
+import ContactForm from "./components/Contact";
+
 // import logo from "./logo.svg";
 import "./App.css";
 
@@ -39,10 +42,9 @@ function App() {
         currentCategory={currentCategory}
       ></Nav>
       <main>
-        <div>
-          <Gallery currentCategory={currentCategory}></Gallery>
-          <About></About>
-        </div>
+        <ContactForm></ContactForm>
+        <Gallery currentCategory={currentCategory}></Gallery>
+        <About></About>
       </main>
     </div>
   );
