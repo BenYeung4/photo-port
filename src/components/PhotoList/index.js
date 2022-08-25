@@ -9,6 +9,9 @@ const PhotoList = ({ category }) => {
   //this const hook is set that the Modal file is invoked only when selected, so we set the default to false.  So the modal only opens when user clicks on the image, which we use in the bottom, where isModalOpen && with the currentPhoto
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  //useState hook is used to manage the current photo state and make this data ccessible to the Model component
+  const [currentPhoto, setCurrentPhoto] = useState();
+
   const [photos] = useState([
     {
       name: "Grocery aisle",
@@ -130,22 +133,21 @@ const PhotoList = ({ category }) => {
   //goes through each photo in the array, trying to find every photo taht matches the category that was selected by the user.  if photo matches the conditioins, return as currentPhotos.
   const currentPhotos = photos.filter((photo) => photo.category === category);
 
-  //useState hook is used to manage the current photo state and make this data ccessible to the Model component
-  const [currentPhoto, setCurrentPhoto] = useState();
-
   const toggleModal = (image, i) => {
     // current photo
     //setCurrentPhoto function retrieved data through the click event.  using the spread operator here to add the indexL i key value pair to the current photo state.  currentPhoto now contains the two critical data poitns needed for the modal.
     setCurrentPhoto({ ...image, index: i });
     //click handler is modify so it shows the image info, which sets to true.
-    setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
   };
 
   //which category the user has selected
   return (
     <div>
-      {/*using the Model/index.js for the details of the images, this sets taht modalOpens only works when clicked.  click is worked with the const toggleModal*/}
-      {isModalOpen && <Modal currentPhoto={currentPhoto} />}
+      {/*using the Model/index.js for the details of the images, this sets taht modalOpens only works when clicked and same for onClose to close.  click is worked with the const toggleModal*/}
+      {isModalOpen && (
+        <Modal currentPhoto={currentPhoto} onClose={toggleModal} />
+      )}
       <div className="flex-row">
         {currentPhotos.map((image, i) => (
           <img
