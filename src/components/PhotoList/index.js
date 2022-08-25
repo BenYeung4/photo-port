@@ -1,8 +1,14 @@
 //useState to set the default values for the array of photos
 import React, { useState } from "react";
 
+//importing the Modal component when selecting a photo
+import Modal from "../Modal";
+
 //created an array for photos
 const PhotoList = ({ category }) => {
+  //this const hook is set that the Modal file is invoked only when selected, so we set the default to false.  So the modal only opens when user clicks on the image, which we use in the bottom, where isModalOpen && with the currentPhoto
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [photos] = useState([
     {
       name: "Grocery aisle",
@@ -124,9 +130,22 @@ const PhotoList = ({ category }) => {
   //goes through each photo in the array, trying to find every photo taht matches the category that was selected by the user.  if photo matches the conditioins, return as currentPhotos.
   const currentPhotos = photos.filter((photo) => photo.category === category);
 
+  //useState hook is used to manage the current photo state and make this data ccessible to the Model component
+  const [currentPhoto, setCurrentPhoto] = useState();
+
+  const toggleModal = (image, i) => {
+    // current photo
+    //setCurrentPhoto function retrieved data through the click event.  using the spread operator here to add the indexL i key value pair to the current photo state.  currentPhoto now contains the two critical data poitns needed for the modal.
+    setCurrentPhoto({ ...image, index: i });
+    //click handler is modify so it shows the image info, which sets to true.
+    setIsModalOpen(true);
+  };
+
   //which category the user has selected
   return (
     <div>
+      {/*using the Model/index.js for the details of the images, this sets taht modalOpens only works when clicked.  click is worked with the const toggleModal*/}
+      {isModalOpen && <Modal currentPhoto={currentPhoto} />}
       <div className="flex-row">
         {currentPhotos.map((image, i) => (
           <img
@@ -135,6 +154,8 @@ const PhotoList = ({ category }) => {
             //alt is used for accessibility user-assistance devices, such as screen readers, so the images's name was assigned.
             alt={image.name}
             className="img-thumbnail mx-1"
+            //onClick makes it that when we click the image, we will use the Modal/index.js model to display the dtail of the image
+            onClick={() => toggleModal(image, i)}
             //key attribute was assigned the image's name, value must be a unique string.  the absense of this unique key value will cause an error message.
             key={image.name}
           />
