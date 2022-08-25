@@ -32,6 +32,8 @@ npm install -D gh-pages - a devDependency to deploy the website
 
 ### `npm start`
 
+http://BenYeung4.github.io/photo-port
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 

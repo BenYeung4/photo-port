@@ -22,6 +22,8 @@ update scripts in package.json with the following:
 "predeploy": "npm run build",
 "deploy": "gh-pages -d build
 
+after pushing to github, run npm run depol
+
 The React Testing Library, which provides functions that will help test React components, including the capacity to render components and query functions that can return DOM elements.
 
 The jest-dom package, which is a library that extends Jest with custom matchers to enable inspection of various parts of the DOM.
